@@ -164,7 +164,7 @@ public class OCMEntityDamageByEntityEvent extends Event implements Cancellable {
         // Don't set has weakness if amplifier is > 0 or < -1, which is outside normal range and probably set by plugin
         // We use an amplifier of -1 (Level 0) to have no effect so weaker attacks will register
         final Optional<Integer> weaknessAmplifier = PotionEffects.get(livingDamager, PotionEffectType.WEAKNESS).map(PotionEffect::getAmplifier);
-        hasWeakness = weaknessAmplifier.isPresent() && (weaknessAmplifier.get() == -1 || weaknessAmplifier.get() == 0);
+        hasWeakness = weaknessAmplifier.isPresent();
         weaknessLevel = weaknessAmplifier.orElse(-1) + 1;
 
         weaknessModifier = weaknessLevel * -4;

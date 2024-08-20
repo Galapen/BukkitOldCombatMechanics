@@ -8,7 +8,6 @@ package kernitus.plugin.OldCombatMechanics.module;
 import kernitus.plugin.OldCombatMechanics.OCMMain;
 import kernitus.plugin.OldCombatMechanics.utilities.Messenger;
 import kernitus.plugin.OldCombatMechanics.utilities.damage.DamageUtils;
-import kernitus.plugin.OldCombatMechanics.utilities.damage.NewWeaponDamage;
 import kernitus.plugin.OldCombatMechanics.utilities.damage.OCMEntityDamageByEntityEvent;
 import kernitus.plugin.OldCombatMechanics.utilities.damage.WeaponDamages;
 import org.bukkit.Material;
@@ -53,12 +52,6 @@ public class ModuleOldToolDamage extends OCMModule {
 
         // If damage was not what we expected, ignore it because it's probably a custom weapon or from another plugin
         final double oldBaseDamage = event.getBaseDamage();
-        final double expectedBaseDamage = NewWeaponDamage.getDamage(weaponMaterial);
-        // We check difference as calculation inaccuracies can make it not match
-        if (Math.abs(oldBaseDamage - expectedBaseDamage) > 0.0001) {
-            debug("Expected " + expectedBaseDamage + " got " + oldBaseDamage + " ignoring weapon...");
-            return;
-        }
 
         final double newWeaponBaseDamage = WeaponDamages.getDamage(weaponMaterial);
         if (newWeaponBaseDamage <= 0) {

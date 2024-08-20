@@ -130,7 +130,7 @@ public class ModuleOldPotionEffects extends OCMModule {
         if (potionTypeCompat.equals(new PotionTypeCompat("WEAKNESS"))) {
             // Set level to 0 so that it doesn't prevent the EntityDamageByEntityEvent from being called
             // due to damage being lower than 0 as some 1.9 weapons deal less damage
-            amplifier = -1;
+            amplifier = 0;
         }
 
         List<PotionEffectType> potionEffects;
@@ -164,7 +164,6 @@ public class ModuleOldPotionEffects extends OCMModule {
             event.setIsWeaknessModifierMultiplier(module().getBoolean("weakness.multiplier"));
             final double newWeaknessModifier = module().getDouble("weakness.modifier");
             event.setWeaknessModifier(newWeaknessModifier);
-            event.setWeaknessLevel(1);
             debug("Old weakness modifier: " + event.getWeaknessLevel() +
                     " New: " + newWeaknessModifier, damager);
         }
